@@ -2,8 +2,48 @@
 #include <iomanip>
 #include<math.h>
 #include<ctime>
+// #include"stdafx.h"
 
 using namespace std;
+
+// 1.	*Написать программу, которая содержит функцию,
+// принимающую в качестве аргумента, указатель на массив и размер массива,
+// и заменяет все отрицательные элементы на 0.
+
+void neg_to_zero(int *a, int n) {
+	for (int* p = a; p < a + n; p++)
+		if (*p < 0) *p = 0;
+}
+
+// 2.	*Написать программу, которая содержит функцию,
+// принимающую в качестве аргумента, указатель на массив и размер массива,
+// и заменяет все четные элементы на - 1.
+
+void even_el(int *a, int n) {
+	int *p = a;
+	for (; p < a + n; p++)
+		if ((p - a) % 2 == 0) *p = -1;
+}
+
+// 3.	*Написать программу, которая вычисляет сумму элементов массива,
+// используя ДВА указателя на массив целых чисел.
+// Первый указатель двигается с начала массива, второй – с конца.
+
+void sum(int *a, int n) {
+	int *p1, *p2;
+	p1 = a;
+	p2 = a + n - 1;
+	int sum = 0;
+	while (p1 <= p2)
+	{
+		if (p1 == p2) sum += *p1;
+		else
+			sum += *p1 + *p2;
+		p1++;
+		p2--;
+	}
+	cout << sum << endl << endl;
+}
 
 int main()
 {
@@ -11,69 +51,35 @@ int main()
 
 	setlocale(LC_ALL, "Rus");
 
-	int tn = 0;
 
-	while (true)
-	{
-		cout << "Задача № ";
-		cin >> tn;
+			int *a;
+			int n = 10;
+			a = new int[n];
 
-		switch (tn)
-		{
-		case 1:
-		{
+			for (int i = 0; i < n; i++)
+			{
+				a[i] = rand() % 31 - 20;
 
-		}
-		break;
-		case 2:
-		{
+				cout << a[i] << " ";
+			}
+			cout << endl;
 
-		}
-		break;
-		case 3:
-		{
+			neg_to_zero(a, n); //1
 
-		}
-		break;
-		case 4:
-		{
+			for (int i = 0; i < n; i++)
+				cout << a[i] << " ";
+			cout << endl << endl;
 
-		}
-		break;
-		case 5:
-		{
+			even_el(a, n); //2
 
-		}
-		break;
-		case 6:
-		{
+			for (int i = 0; i < n; i++)
+				cout << a[i] << " ";
+			cout << endl << endl;
 
-		}
-		break;
-		case 7:
-		{
+			sum(a, n); //3
 
-		}
-		break;
-		case 8:
-		{
+			delete[] a;
 
-		}
-		break;
-		case 9:
-		{
-
-		}
-		break;
-		case 10:
-		{
-
-		}
-		break;
-		default:
-			cout << "нет такой задачи" << endl << endl;
-		}
-	}
 	system("pause");
 	return 0;
 }
